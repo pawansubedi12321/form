@@ -1,19 +1,25 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-const Form_3rd = ({array,setarray,userdata}) => {
+import React, { useState , } from 'react'
+import { Link ,useLocation} from 'react-router-dom'
+const Form_3rd = () => {
   const[username,setusername]=useState('');
   const[password,setpassword]=useState(''); 
+  const[userdata,setuserdata]=useState(''); 
+
+  const location = useLocation()
+  let { data } = location.state
   
   const click=(e)=>{
     e.preventDefault();
-    userdata={
+    const userdata={
       username:username,
-      
+      password: password,
     }
-    setarray({...array,userdata});
+    setuserdata(userdata);
+    // data = {...data, ...userdata};
+    console.log(data);
     
   }
-  console.log(array);
+  // console.log(array);
   return (
     <div>
       <form onSubmit={click}>
@@ -30,7 +36,7 @@ const Form_3rd = ({array,setarray,userdata}) => {
     
       <button>submit</button>
       </form>
-      <Link to="/viewform">
+      <Link to="/viewform" state={{ data: {...data,...userdata} }}>
         <button>next</button>
       </Link>
     </div>

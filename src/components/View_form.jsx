@@ -1,16 +1,20 @@
 import React from 'react'
+import { Link ,useLocation} from 'react-router-dom'
 
-const View_form = ({array,setarray}) => {
+const View_form = () => {
   
-    
+  const location = useLocation()
+  let { data } = location.state
     //console.log("ee");
+
+    console.log(data);
 
     // console.log(array[3].age);
   return (
     <div>
         <ol>
       
-        {array.map((item, index) => (
+        {[data].map((item, index) => (
         <li key={index}>
             <p>Name:{item.name}</p>
             <p>Email:{item.email}</p>

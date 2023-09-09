@@ -12,20 +12,14 @@ const Form_1st= ()=> {
   const submit=(e)=>{
    // e.preventDefault();
     e.preventDefault();
-    userdata={
+    const userdata={
       name:name,
       email:email,
-      phoneno:phoneno,
-      
-    
+      phoneno:phoneno,  
     }
     
-    setarray({...array,userdata});
-    console.log("submitted go to the next");
-  
-    
-    
-    
+    setarray({...userdata});
+    console.log("Submitting");    
   }
  
   // console.log(name);
@@ -55,10 +49,10 @@ const Form_1st= ()=> {
       <button>Submit</button>
       {/* </Link> */}
       </form>
-      <Link to="/Form_2nd">
+      <Link to="/Form_2nd" state={{ data: {...array} }}>
         <button>Next</button>
       </Link>
-      <Link to="/viewform">
+      <Link to="/viewform" state={{ data: {...array} }}>
         <button>view form</button>
       </Link>
       </div>

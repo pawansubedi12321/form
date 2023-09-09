@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import {Link} from 'react-router-dom';
-const Form_2nd = ({array,setarray,userdata}) => {
+import {Link, useLocation} from 'react-router-dom';
+const Form_2nd = () => {
+  const location = useLocation()
+  let { data } = location.state
+  const[userdata,setuserdata]=useState({});
   const[education,seteducation]=useState('');
   const[age,setage]=useState('');
   
   const click=(e)=>{
     e.preventDefault();
-    userdata={
-      
+    setuserdata({
       education:education,
       age:age,
-      
-    }
+    });
+
+    // console.log(education);
     
-    setarray({...array,userdata});
+    // data = {...data, ...userdata};
+    console.log(data);
     
     
   }
-  console.log(array);
+  // console.log(array);
   
   
   
@@ -48,7 +52,7 @@ const Form_2nd = ({array,setarray,userdata}) => {
   
       <button>submit</button>
       </form>
-      <Link to="/Form_3rd">
+      <Link to="/Form_3rd" state={{ data: {...data,...userdata} }}>
         <button>Next</button>
       </Link>
       </div>
